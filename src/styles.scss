@@ -1,11 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
-p {
-  cursor: pointer;
+.btn {
+  position: relative;
+  top: 40px;
+  padding: 5px 10px;
+  margin-right: 10px;
   border: 1px solid #000;
-  border-radius: 5px;
-  width: 50px;
-  padding: 5px;
+  border-radius: 10px;
+  text-decoration: none;
+}
+.lang {
+  position: fixed;
+  top: 40px;
+  right: 40px;
+  span {
+    cursor: pointer;
+  }
+}
+.outlet {
+  border: 1px solid #d4d4d4;
+  border-radius: 15px;
+  margin-top: 72px;
+  width: 80%;
+  position: relative;
+  left: 10%;
   text-align: center;
-  height: 15px;
-  line-height: 15px;
 }

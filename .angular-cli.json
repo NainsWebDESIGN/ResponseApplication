@@ -1,13 +1,13 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "http-catch-response"
+    "name": "new-project"
   },
   "apps": [
     {
       "root": "src",
       "outDir": "dist",
-      "assets": ["assets", "favicon.ico"],
+      "assets": ["assets", "favicon.ico", "js"],
       "index": "index.html",
       "main": "main.ts",
       "polyfills": "polyfills.ts",
@@ -16,7 +16,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": ["styles.scss"],
-      "scripts": [],
+      "scripts": [{ "input": "js/config.js" }],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

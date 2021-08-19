@@ -5,6 +5,5 @@ export interface ResponseError {
 export interface ResponeData {
     err: ResponseError,
     url: string,
-    status: boolean,
     ret: any
 }

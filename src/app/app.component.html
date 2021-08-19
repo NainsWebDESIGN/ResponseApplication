@@ -1,5 +1,8 @@
-Ajax Input:<br><br>
-<input type="text" [(ngModel)]="inputJson" (keyup.enter)='get()'>
-<p (click)='get("test")'>Test</p>
-<p (click)='get("zero")'>Zero</p>
-<p (click)='get("Error")'>Error</p>
+<a *ngFor="let item of [123, 456, 789, 159]" [routerLink]="['/rou', item]" class="btn">{{item}}</a>
+<div class="outlet">
+  <router-outlet></router-outlet>
+</div>
+<div class="lang">
+  <span (click)='changeLang("zh-tw")'>中文</span>
+  <span (click)='changeLang("en-us")'>英文</span>
+</div>

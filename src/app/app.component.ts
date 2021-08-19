@@ -3,19 +3,12 @@ import { ApiService } from '@service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
-  inputJson: string;
   constructor(private api: ApiService) { }
-  get(text?) {
-    let Text = (text == undefined) ? this.inputJson : text;
-    this.api.getTest(Text).subscribe(
-      data => console.log(data),
-      err => console.log(err),
-      () => console.log("Complete")
-    );
+  changeLang(lang: string) {
+    this.api.getLang(lang);
   }
   ngOnInit() {
   }

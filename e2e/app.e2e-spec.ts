@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('http-catch-response App', () => {
+describe('new-project App', () => {
   let page: AppPage;
 
   beforeEach(() => {

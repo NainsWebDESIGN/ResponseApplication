@@ -2,24 +2,29 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AppRoute } from './app.routing';
 
 // Component
 import { AppComponent } from './app.component';
+import { RouterIDComponent } from './RouterID/RouterID.component';
 
 // Service
 import { ApiService } from '@service';
 
-//Pipe
-// import { xxx } from '@pipe';
+// Pipe
+import { AppPipe } from '@pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AppPipe,
+    RouterIDComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoute
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
