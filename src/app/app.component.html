@@ -3,6 +3,6 @@
   <router-outlet></router-outlet>
 </div>
 <div class="lang">
-  <span (click)='changeLang("zh-tw")'>中文</span>
-  <span (click)='changeLang("en-us")'>英文</span>
+  <span style="margin-right: 10px;" (click)='changeLang("zh-tw")'>{{"Chinese" | app: api.lang}}</span>
+  <span (click)='changeLang("en-us")'>{{"English" | app: api.lang}}</span>
 </div>

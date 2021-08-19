@@ -2,5 +2,7 @@
   "This is 123.json": "這是123.json檔案",
   "This is 456.json": "這是456.json檔案",
   "This is 789.json": "這是789.json檔案",
-  "Service Error": "伺服器錯誤: 有可能是由Ajax所導致"
+  "Service Error": "伺服器錯誤: 有可能是由Ajax所導致",
+  "Chinese": "中文",
+  "English": "英文"
 }
