@@ -1,12 +1,12 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "new-project"
+    "name": "ResponseApplication"
   },
   "apps": [
     {
       "root": "src",
-      "outDir": "dist",
+      "outDir": "ResponseApplication",
       "assets": ["assets", "favicon.ico", "js"],
       "index": "index.html",
       "main": "main.ts",
