@@ -13,10 +13,16 @@ export class RouterIDComponent implements OnInit {
   constructor(private router: ActivatedRoute, public api: ApiService) { }
   ngOnInit() {
     this.router.params.subscribe(rou => {
-      this.api.getJson(rou.id).subscribe(
-        (data: ResponeData) => this.PageName = data.ret,
-        (err: ResponeData) => this.PageName = err.err.msg
-      )
+      let Observer = {
+        next: (data: ResponeData) => this.PageName = data.ret,
+        error: (err: ResponeData) => this.PageName = err.err.msg
+      }
+      if (rou.id.length > 3) {
+        let uu = rou.id.substr(0, 3);
+        this.api.postApi(uu, { body: `post${uu}` }).subscribe(Observer)
+      } else {
+        this.api.getApi(rou.id).subscribe(Observer)
+      }
     })
   }
 

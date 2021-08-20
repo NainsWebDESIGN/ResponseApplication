@@ -7,7 +7,7 @@
     {
       "root": "src",
       "outDir": "ResponseApplication",
-      "assets": ["assets", "favicon.ico", "js"],
+      "assets": ["assets", "favicon.ico", "js", "php"],
       "index": "index.html",
       "main": "main.ts",
       "polyfills": "polyfills.ts",

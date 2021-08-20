@@ -1,4 +1,7 @@
-<a *ngFor="let item of [123, 456, 789, 159]" [routerLink]="['/rou', item]" class="btn">{{item}}</a>
+<a *ngFor="let item of [123, 456, 789, 159]" [routerLink]="['/rou', item]" class="btn">{{item}}.json</a>
+<a *ngFor="let item of ['1234', '4567', '7891', '1597']" [routerLink]="['/rou', item]" class="btn">
+  {{item | slice: 0:3}}.php
+</a>
 <div class="outlet">
   <router-outlet></router-outlet>
 </div>

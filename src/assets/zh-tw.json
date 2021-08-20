@@ -1,8 +1,12 @@
 {
+  "Chinese": "中文",
+  "English": "英文",
   "This is 123.json": "這是123.json檔案",
   "This is 456.json": "這是456.json檔案",
   "This is 789.json": "這是789.json檔案",
-  "Service Error": "伺服器錯誤: 有可能是由Ajax所導致",
-  "Chinese": "中文",
-  "English": "英文"
+  "This is 123 getWay php And body is post123": "這是getWay123的php，post資料為123",
+  "This is 456 getWay php And body is post456": "這是getWay456的php，post資料為456",
+  "This is 789 getWay php And body is post789": "這是getWay789的php，post資料為789",
+  "Service Error": "伺服器錯誤: 請給予正確的url",
+  "getWay Error": "伺服器錯誤: 請給予正確的getWay"
 }

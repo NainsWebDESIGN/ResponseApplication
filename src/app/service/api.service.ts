@@ -10,7 +10,7 @@ import 'rxjs/add/observable/throw';
 export class ApiService {
     lang: any;
     constructor(private http: HttpClient) { }
-    getJson(rouID: number): Observable<ResponeData> {
+    getApi(rouID: number): Observable<ResponeData> {
         let url = `assets/${rouID}.json`;
         return this.http.get(url)
             .map((data: HttpResponse<any>) => this.returnData(data, url))
@@ -23,7 +23,19 @@ export class ApiService {
             err => console.log(`Lang Error`)
         )
     }
-    returnData(obj: HttpResponse<any>, url: string): ResponeData {
+    postApi(rouID: string, obj: any): Observable<ResponeData> {
+        let url = `php/everything.php?getWay=${rouID.substr(0, 3)}`,
+            body = this.postForm(obj);
+        return this.http.post(url, body)
+            .map((data: HttpResponse<any>) => this.returnData(data, url))
+            .catch((err: HttpErrorResponse) => this.returnError(err))
+    }
+    private postForm(obj) {
+        let data = new FormData();
+        Object.keys(obj).forEach(item => data.append(item, obj[item]));
+        return data;
+    }
+    private returnData(obj: HttpResponse<any>, url: string): ResponeData {
         return {
             err: {
                 error: null,
@@ -33,7 +45,7 @@ export class ApiService {
             ret: obj
         }
     }
-    returnError(err: HttpErrorResponse): Observable<ResponeData> {
+    private returnError(err: HttpErrorResponse): Observable<ResponeData> {
         return Observable.throw({
             err: {
                 error: err.error,

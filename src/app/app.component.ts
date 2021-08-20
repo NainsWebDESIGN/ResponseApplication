@@ -6,7 +6,7 @@ import { ApiService } from '@service';
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
-  constructor(private api: ApiService) { }
+  constructor(public api: ApiService) { }
   changeLang(lang: string) {
     this.api.getLang(lang);
   }
