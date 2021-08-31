@@ -8,20 +8,7 @@ $getWay = $_GET['getWay'];
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $body = $_POST['body'];
-    switch ($getWay) {
-        case 123:
-            $data = "This is 123 getWay php And body is " . $body;
-            break;
-        case 456:
-            $data = "This is 456 getWay php And body is " . $body;
-            break;
-        case 789:
-            $data = "This is 789 getWay php And body is " . $body;
-            break;
-        default:
-            $data = "getWay Error";
-            break;
-    }
+    $data = array($getWay, $body);
 
     echo json_encode($data);
 } else {

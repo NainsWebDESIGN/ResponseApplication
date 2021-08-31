@@ -1,58 +1,46 @@
 import { Injectable } from '@angular/core';
-import { ResponseError, ResponeData } from '@ts/interface';
 import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { ResponseData } from '@ts/interface';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class ApiService {
-    lang: any;
+    lang: string = 'zh-tw';
+    langChart: any;
+    mode: boolean = false;
     constructor(private http: HttpClient) { }
-    getApi(rouID: number): Observable<ResponeData> {
-        let url = `assets/${rouID}.json`;
-        return this.http.get(url)
-            .map((data: HttpResponse<any>) => this.returnData(data, url))
-            .catch((err: HttpErrorResponse) => this.returnError(err))
+    changeLanguage(lang: string) {
+        this.http.get(`assets/${lang}.json`)
+            .subscribe(Lang => this.langChart = Lang);
     }
-    getLang(lang: string) {
-        let url = `assets/${lang}.json`;
-        this.http.get(url).subscribe(
-            lang => this.lang = lang,
-            err => console.log(`Lang Error`)
-        )
+    postApi(getWay: string | number, obj?: any): Observable<ResponseData> {
+        let data = (obj) ? this.http.post(`php/system.php?getWay=${getWay}`, this.formateObj(obj)) : this.http.get(`assets/${getWay}.json`);
+        return this.formateData(data);
     }
-    postApi(rouID: string, obj: any): Observable<ResponeData> {
-        let url = `php/everything.php?getWay=${rouID.substr(0, 3)}`,
-            body = this.postForm(obj);
-        return this.http.post(url, body)
-            .map((data: HttpResponse<any>) => this.returnData(data, url))
-            .catch((err: HttpErrorResponse) => this.returnError(err))
+    private formateData(obj: Observable<any>): Observable<ResponseData> {
+        return obj.map((el: HttpResponse<any>) => this.SuccesData(el))
+            .catch((err: HttpErrorResponse) => this.ErrorData(err));
     }
-    private postForm(obj) {
+    private formateObj(obj: any): FormData {
         let data = new FormData();
         Object.keys(obj).forEach(item => data.append(item, obj[item]));
         return data;
     }
-    private returnData(obj: HttpResponse<any>, url: string): ResponeData {
+    private SuccesData(obj: HttpResponse<any>): ResponseData {
         return {
-            err: {
-                error: null,
-                msg: null
-            } as ResponseError,
-            url: url,
+            status: true,
+            err: "OK",
             ret: obj
         }
     }
-    private returnError(err: HttpErrorResponse): Observable<ResponeData> {
+    private ErrorData(obj: HttpErrorResponse): Observable<ResponseData> {
         return Observable.throw({
-            err: {
-                error: err.error,
-                msg: "Service Error"
-            } as ResponseError,
-            url: err.url,
-            ret: err
+            status: false,
+            err: "Server Error",
+            ret: obj
         })
     }
 }

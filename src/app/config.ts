@@ -1,5 +1,5 @@
-interface Lang {
-    lang: string;
+interface _language {
+    lang: string
 }
-declare const _Lang: Lang;
-export const Lang: Lang = _Lang;
+declare const language: _language;
+export const _language: _language = language;

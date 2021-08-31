@@ -1,0 +1,124 @@
+@import "./font.scss";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "my_font", "微軟正黑體", sans-serif;
+  font-weight: 700;
+  transition: 0.5s ease-in-out;
+}
+body {
+  transition: 0.5s ease-in-out;
+  background: url(../img/bg.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+section {
+  color: #fff;
+  width: 80%;
+  height: 80%;
+  position: fixed;
+  top: 10%;
+  left: 10%;
+  box-shadow: -3px 5px 15px #000;
+  border-radius: 15px;
+  //   padding: 15px;
+  background: #555;
+  opacity: 0.8;
+  &.night {
+    color: #000;
+    background: #ccc;
+    box-shadow: 1px 2px 5px #eee;
+    box-shadow: -3px 5px 15px #fff;
+  }
+  header {
+    text-align: center;
+    width: 100%;
+    height: 72px;
+    line-height: 72px;
+    background: #333;
+    opacity: 0.8;
+    border-radius: 15px 15px 0 0;
+    &.night {
+      background: #777;
+    }
+    .logo {
+      font-size: 36px;
+      width: 200px;
+      position: absolute;
+      color: #fff;
+      &.night {
+        color: #000;
+      }
+    }
+    .link {
+      height: 100%;
+      position: relative;
+      width: 200px;
+      left: 50%;
+      margin-left: -100px;
+      a {
+        text-decoration: none;
+        cursor: pointer;
+        display: block;
+        margin-right: 15px;
+        height: 100%;
+        float: left;
+        color: #fff;
+        &:link,
+        &:visited {
+          color: #fff;
+        }
+        &.night {
+          color: #000;
+          &:link,
+          &:visited {
+            color: #000;
+          }
+        }
+      }
+    }
+  }
+}
+.lang {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 9999;
+  .langBtn {
+    text-align: center;
+    border-bottom: 3px solid #9b143c;
+    box-shadow: 0px 2px 5px #9b143c;
+    color: #fff;
+    background: linear-gradient(to right, #c04168, #9b143c);
+    margin-left: 8px;
+    padding: 3px 8px;
+    border-radius: 5px;
+    float: left;
+    transition: 0.1s ease-in-out;
+    cursor: pointer;
+    &:hover {
+      border-bottom: 0px solid #9b143c;
+      transform: translateY(3px);
+      background: linear-gradient(to right, #ac2d53, #8a0930);
+    }
+    &.night {
+      color: #000;
+      border-bottom: 3px solid #c04168;
+      box-shadow: 0px 2px 5px #c04168;
+      color: #fff;
+      background: linear-gradient(to right, #cc6c89, #c04168);
+      &:hover {
+        border-bottom: 0px solid #c04168;
+        background: linear-gradient(to right, #c04168, #9b143c);
+      }
+    }
+  }
+}
+.rouText {
+  color: #fff;
+  margin: 15px;
+  &.night {
+    color: #000;
+  }
+}

@@ -1,3 +1,3 @@
-var _Lang = {
-  lang: "en-us",
+var language = {
+  lang: "zh-tw",
 };

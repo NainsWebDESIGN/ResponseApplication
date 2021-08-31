@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class AppPipe implements PipeTransform {
 
-  transform(value: any, obj: any) {
+  transform(value: string, obj: any) {
     return (!obj || !obj[value]) ? value : obj[value];
   }
 

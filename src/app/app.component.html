@@ -1,11 +1,15 @@
-<a *ngFor="let item of [123, 456, 789, 159]" [routerLink]="['/rou', item]" class="btn">{{item}}.json</a>
-<a *ngFor="let item of ['1234', '4567', '7891', '1597']" [routerLink]="['/rou', item]" class="btn">
-  {{item | slice: 0:3}}.php
-</a>
-<div class="outlet">
+<section [class.night]="api.mode">
+  <div class="lang">
+    <a [class.night]="api.mode" class="langBtn" (click)='api.changeLanguage("zh-tw")'>{{"中文" | app : api.langChart}}</a>
+    <a [class.night]="api.mode" class="langBtn" (click)='api.changeLanguage("en-us")'>{{"英文" | app : api.langChart}}</a>
+    <a [class.night]="api.mode" class="langBtn" (click)='changeMode()'>{{mode | app : api.langChart}}</a>
+  </div>
+  <header [class.night]="api.mode">
+    <div class="logo" [class.night]="api.mode">LOGO</div>
+    <div class="link">
+      <a [class.night]="api.mode" *ngFor="let item of ['測試1', '測試2', '測試3']" [routerLink]="['/rou', item]">{{item | app:
+        api.langChart}}</a>
+    </div>
+  </header>
   <router-outlet></router-outlet>
-</div>
-<div class="lang">
-  <span style="margin-right: 10px;" (click)='changeLang("zh-tw")'>{{"Chinese" | app: api.lang}}</span>
-  <span (click)='changeLang("en-us")'>{{"English" | app: api.lang}}</span>
-</div>
+</section>

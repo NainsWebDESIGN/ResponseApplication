@@ -1,9 +1,5 @@
-export interface ResponseError {
-    error: string,
-    msg: string
-}
-export interface ResponeData {
-    err: ResponseError,
-    url: string,
+export interface ResponseData {
+    status: boolean,
+    err: string,
     ret: any
 }
