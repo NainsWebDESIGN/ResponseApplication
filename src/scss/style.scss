@@ -1,4 +1,14 @@
 @import "./font.scss";
+@mixin mobile {
+  @media (max-width: 415px) {
+    @content;
+  }
+}
+@mixin ipad {
+  @media (max-width: 2170px) and (min-width: 1490px) {
+    @content;
+  }
+}
 * {
   margin: 0;
   padding: 0;
@@ -22,7 +32,6 @@ section {
   left: 10%;
   box-shadow: -3px 5px 15px #000;
   border-radius: 15px;
-  //   padding: 15px;
   background: #555;
   opacity: 0.8;
   &.night {
@@ -30,6 +39,24 @@ section {
     background: #ccc;
     box-shadow: 1px 2px 5px #eee;
     box-shadow: -3px 5px 15px #fff;
+  }
+  @include mobile {
+    height: 90%;
+    top: 5%;
+  }
+  .menuToggle {
+    height: 90%;
+    border-radius: 15px 0 0 15px;
+    width: 40%;
+    position: fixed;
+    left: -50%;
+    opacity: 0;
+    background-color: #000;
+    z-index: 10;
+    &.active {
+      left: 10%;
+      opacity: 1;
+    }
   }
   header {
     text-align: center;
@@ -42,13 +69,83 @@ section {
     &.night {
       background: #777;
     }
+    .mobile {
+      width: 10px;
+      height: 3px;
+      background-color: #fff;
+      position: absolute;
+      top: 35px;
+      right: 15px;
+      border-radius: 3px;
+      cursor: pointer;
+      &.menu {
+        transform: rotate(45deg);
+        width: 20px;
+        &::before {
+          opacity: 0;
+        }
+        &::after {
+          width: 20px;
+          top: 0;
+          transform: rotate(90deg);
+        }
+      }
+      &::before {
+        content: "";
+        width: 20px;
+        height: 3px;
+        background-color: #fff;
+        position: absolute;
+        top: -6px;
+        right: 0;
+        border-radius: 3px;
+      }
+      &::after {
+        content: "";
+        width: 15px;
+        height: 3px;
+        background-color: #fff;
+        position: absolute;
+        top: 6px;
+        right: 0;
+        border-radius: 3px;
+        &.menu {
+          transform: rotate(135deg);
+        }
+      }
+    }
     .logo {
       font-size: 36px;
-      width: 200px;
       position: absolute;
+      left: 15px;
       color: #fff;
       &.night {
         color: #000;
+      }
+      @include mobile {
+        width: 94px;
+        left: 50%;
+        margin-left: -47px;
+      }
+    }
+    a {
+      text-decoration: none;
+      cursor: pointer;
+      display: block;
+      margin-right: 15px;
+      height: 100%;
+      float: left;
+      color: #fff;
+      &:link,
+      &:visited {
+        color: #fff;
+      }
+      &.night {
+        color: #000;
+        &:link,
+        &:visited {
+          color: #000;
+        }
       }
     }
     .link {
@@ -83,7 +180,7 @@ section {
 .lang {
   position: absolute;
   top: 20px;
-  right: 55px;
+  right: 15px;
   z-index: 9999;
   .langBtn {
     text-align: center;

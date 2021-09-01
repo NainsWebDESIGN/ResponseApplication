@@ -1,15 +1,30 @@
 <section [class.night]="api.mode">
-  <div class="lang">
-    <a [class.night]="api.mode" class="langBtn" (click)='api.changeLanguage("zh-tw")'>{{"中文" | app : api.langChart}}</a>
-    <a [class.night]="api.mode" class="langBtn" (click)='api.changeLanguage("en-us")'>{{"英文" | app : api.langChart}}</a>
-    <a [class.night]="api.mode" class="langBtn" (click)='changeMode()'>{{mode | app : api.langChart}}</a>
+  <div class="lang" *ngIf="false">
+    <a
+      [class.night]="api.mode"
+      class="langBtn"
+      (click)="api.changeLanguage('zh-tw')"
+      >{{ "中文" | app: api.langChart }}</a
+    >
+    <a
+      [class.night]="api.mode"
+      class="langBtn"
+      (click)="api.changeLanguage('en-us')"
+      >{{ "英文" | app: api.langChart }}</a
+    >
+    <a [class.night]="api.mode" class="langBtn" (click)="changeMode()">{{
+      mode | app: api.langChart
+    }}</a>
+  </div>
+  <div class="menuToggle" [class.active]="menu">
+    <app_btn *ngIf="false"></app_btn>
   </div>
   <header [class.night]="api.mode">
     <div class="logo" [class.night]="api.mode">LOGO</div>
-    <div class="link">
-      <a [class.night]="api.mode" *ngFor="let item of ['測試1', '測試2', '測試3']" [routerLink]="['/rou', item]">{{item | app:
-        api.langChart}}</a>
+    <div class="link" *ngIf="!InnerWidth">
+      <app_btn></app_btn>
     </div>
+    <div class="mobile" [class.menu]="menu" (click)="menu = !menu"></div>
   </header>
   <router-outlet></router-outlet>
 </section>
