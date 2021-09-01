@@ -17,14 +17,19 @@
     }}</a>
   </div>
   <div class="menuToggle" [class.active]="menu">
-    <app_btn *ngIf="false"></app_btn>
+    <app_btn *ngIf="InnerWidth"></app_btn>
   </div>
   <header [class.night]="api.mode">
     <div class="logo" [class.night]="api.mode">LOGO</div>
     <div class="link" *ngIf="!InnerWidth">
       <app_btn></app_btn>
     </div>
-    <div class="mobile" [class.menu]="menu" (click)="menu = !menu"></div>
+    <div
+      class="mobile"
+      [class.menu]="menu"
+      *ngIf="InnerWidth"
+      (click)="menu = !menu"
+    ></div>
   </header>
   <router-outlet></router-outlet>
 </section>
