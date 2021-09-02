@@ -1,0 +1,8 @@
+<div class="lang">
+    <a [class.night]="api.mode" class="langBtn" (click)="language('zh-tw')">
+        {{ "中文" | app: api.langChart }}</a>
+    <a [class.night]="api.mode" class="langBtn" (click)="language('en-us')">
+        {{ "英文" | app: api.langChart }}</a>
+    <a [class.night]="api.mode" class="langBtn" (click)="changeMode()">
+        {{ mode | app: api.langChart }}</a>
+</div>

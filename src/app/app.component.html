@@ -1,35 +1,19 @@
 <section [class.night]="api.mode">
-  <div class="lang" *ngIf="false">
-    <a
-      [class.night]="api.mode"
-      class="langBtn"
-      (click)="api.changeLanguage('zh-tw')"
-      >{{ "中文" | app: api.langChart }}</a
-    >
-    <a
-      [class.night]="api.mode"
-      class="langBtn"
-      (click)="api.changeLanguage('en-us')"
-      >{{ "英文" | app: api.langChart }}</a
-    >
-    <a [class.night]="api.mode" class="langBtn" (click)="changeMode()">{{
-      mode | app: api.langChart
-    }}</a>
-  </div>
-  <div class="menuToggle" [class.active]="menu">
-    <app_btn *ngIf="InnerWidth"></app_btn>
+  <app_lang (Toggle)="menu = $event" *ngIf="!InnerWidth"></app_lang>
+  <div class="menuToggle" [ngClass]="{'active': menu, 'night': api.mode}">
+    <div class="menulink">
+      <app_btn (Toggle)="menu = $event" *ngIf="InnerWidth"></app_btn>
+    </div>
+    <div class="toggleLang">
+      <app_lang (Toggle)="menu = $event" *ngIf="InnerWidth"></app_lang>
+    </div>
   </div>
   <header [class.night]="api.mode">
     <div class="logo" [class.night]="api.mode">LOGO</div>
     <div class="link" *ngIf="!InnerWidth">
-      <app_btn></app_btn>
+      <app_btn (Toggle)="menu = $event"></app_btn>
     </div>
-    <div
-      class="mobile"
-      [class.menu]="menu"
-      *ngIf="InnerWidth"
-      (click)="menu = !menu"
-    ></div>
+    <div class="mobile" [class.menu]="menu" *ngIf="InnerWidth" (click)="menu = !menu"></div>
   </header>
   <router-outlet></router-outlet>
 </section>

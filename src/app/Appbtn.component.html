@@ -1,7 +1,4 @@
-<a
-  [class.night]="api.mode"
-  *ngFor="let item of ['測試1', '測試2', '測試3']"
-  [routerLink]="['/rou', item]"
->
+<a [class.night]="api.mode" *ngFor="let item of ['測試1', '測試2', '測試3']" [routerLink]="['/rou', item]"
+  (click)='Toggle.emit(false)'>
   {{ item | app: api.langChart }}
 </a>

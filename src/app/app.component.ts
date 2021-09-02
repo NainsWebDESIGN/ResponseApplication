@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, Output, EventEmitter } from '@angular/core';
 import { ApiService } from '@service';
 import { BG, Mode } from '@ts/mode';
 
@@ -14,16 +14,9 @@ export class AppComponent implements OnInit {
     let wwd = $event.target.innerWidth;
     this.InnerWidth = (wwd <= 414)
   }
-  mode: Mode = Mode.S;
   InnerWidth: boolean = false;
   menu: boolean = false;
   constructor(public api: ApiService) { }
-  changeMode() {
-    this.api.mode = !this.api.mode;
-    let mode = (this.api.mode) ? "N" : "S", body = document.querySelector("body");
-    this.mode = Mode[mode];
-    body.style.background = BG[mode];
-  }
   ngOnInit() {
     let wwd = window.innerWidth;
     this.InnerWidth = (wwd <= 414);
@@ -42,7 +35,33 @@ export class AppComponent implements OnInit {
   styleUrls: ['./app.component.css']
 })
 export class AppbtnComponent implements OnInit {
+  @Output() Toggle: EventEmitter<boolean> = new EventEmitter();
   constructor(public api: ApiService) { }
+  ngOnInit() {
+
+  }
+}
+
+@Component({
+  selector: 'app_lang',
+  templateUrl: './lang.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class LangComponent implements OnInit {
+  @Output() Toggle: EventEmitter<boolean> = new EventEmitter();
+  mode: Mode = Mode.S;
+  constructor(public api: ApiService) { }
+  changeMode() {
+    this.api.mode = !this.api.mode;
+    let mode = (this.api.mode) ? "N" : "S", body = document.querySelector("body");
+    this.mode = Mode[mode];
+    body.style.background = BG[mode];
+    this.Toggle.emit(false);
+  }
+  language(lang: string) {
+    this.api.changeLanguage(lang);
+    this.Toggle.emit(false);
+  }
   ngOnInit() {
 
   }

@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoute } from '@app/app.routing';
 
 // Component
-import { AppComponent, AppbtnComponent } from './app.component';
+import { AppComponent, AppbtnComponent, LangComponent } from './app.component';
 import { RouterIDComponent } from './routerID/routerID.component';
 
 // Service
@@ -19,7 +19,8 @@ import { AppPipe } from '@pipe';
     AppComponent,
     AppPipe,
     RouterIDComponent,
-    AppbtnComponent
+    AppbtnComponent,
+    LangComponent
   ],
   imports: [
     BrowserModule,

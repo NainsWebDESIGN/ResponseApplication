@@ -57,6 +57,63 @@ section {
       left: 10%;
       opacity: 1;
     }
+    &.night {
+      background-color: #777;
+    }
+    .menulink {
+      height: 60%;
+      text-align: center;
+      a {
+        margin-top: 50px;
+        text-decoration: none;
+        cursor: pointer;
+        display: block;
+        margin-right: 15px;
+        color: #fff;
+        &:link,
+        &:visited {
+          color: #fff;
+        }
+        &.night {
+          color: #000;
+          &:link,
+          &:visited {
+            color: #000;
+          }
+        }
+      }
+    }
+    .toggleLang {
+      position: relative;
+      height: 30%;
+      .lang {
+        position: absolute;
+        top: 37%;
+        left: 15px;
+        z-index: 9999;
+        width: 63%;
+        a {
+          text-decoration: none;
+          cursor: pointer;
+          display: block;
+          margin-right: 15px;
+          float: left;
+          color: #fff;
+          margin-top: 8px;
+          &:link,
+          &:visited {
+            color: #fff;
+          }
+          &.night {
+            color: #000;
+            &:link,
+            &:visited {
+              color: #000;
+            }
+          }
+        }
+      }
+    }
   }
   header {
     text-align: center;
