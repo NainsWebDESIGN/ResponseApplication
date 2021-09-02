@@ -1,6 +1,6 @@
 <section [class.night]="api.mode">
   <app_lang (Toggle)="menu = $event" *ngIf="!InnerWidth"></app_lang>
-  <div class="menuToggle" [ngClass]="{'active': menu, 'night': api.mode}">
+  <div class="menuToggle" [ngClass]="{'active': menu, 'night': api.mode}" *ngIf="InnerWidth">
     <div class="menulink">
       <app_btn (Toggle)="menu = $event" *ngIf="InnerWidth"></app_btn>
     </div>
