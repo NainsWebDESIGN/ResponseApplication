@@ -1,17 +1,17 @@
 <section [class.night]="api.mode">
-  <app_lang (Toggle)="menu = $event" *ngIf="!InnerWidth"></app_lang>
+  <app_lang [Mode]="Mode" [Menu]="Menu" [mode]="mode" *ngIf="!InnerWidth"></app_lang>
   <div class="menuToggle" [ngClass]="{'active': menu, 'night': api.mode}" *ngIf="InnerWidth">
     <div class="menulink">
-      <app_btn (Toggle)="menu = $event" *ngIf="InnerWidth"></app_btn>
+      <app_btn [Menu]="Menu" *ngIf="InnerWidth"></app_btn>
     </div>
     <div class="toggleLang">
-      <app_lang (Toggle)="menu = $event" *ngIf="InnerWidth"></app_lang>
+      <app_lang [Mode]="Mode" [Menu]="Menu" [mode]="mode" *ngIf="InnerWidth"></app_lang>
     </div>
   </div>
   <header [class.night]="api.mode">
     <div class="logo" [class.night]="api.mode">LOGO</div>
     <div class="link" *ngIf="!InnerWidth">
-      <app_btn (Toggle)="menu = $event"></app_btn>
+      <app_btn [Menu]="Menu"></app_btn>
     </div>
     <div class="mobile" [class.menu]="menu" *ngIf="InnerWidth" (click)="menu = !menu"></div>
   </header>

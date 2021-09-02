@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, HostListener, Output, EventEmitter, Input } from '@angular/core';
 import { ApiService } from '@service';
 import { BG, Mode } from '@ts/mode';
 
@@ -11,12 +11,28 @@ export class AppComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   /** 依據螢幕大小更動取得寬度值 */
   setWidth($event) {
-    let wwd = $event.target.innerWidth;
-    this.InnerWidth = (wwd <= 414)
+    this.InnerWidth = ($event.target.innerWidth <= 414)
   }
   InnerWidth: boolean = false;
+  Menu: Function;
   menu: boolean = false;
+  Mode: Function;
+  mode: Mode = Mode.S;
   constructor(public api: ApiService) { }
+  changeMode() {
+    this.api.mode = !this.api.mode;
+    let mode = (this.api.mode) ? "N" : "S", body = document.querySelector("body");
+    this.mode = Mode[mode];
+    body.style.background = BG[mode];
+    this.changeMenu(false);
+  }
+  changeMenu(boolin?: boolean) {
+    if (boolin) {
+      this.menu = boolin;
+    } else {
+      this.menu = !this.menu;
+    }
+  }
   ngOnInit() {
     let wwd = window.innerWidth;
     this.InnerWidth = (wwd <= 414);
@@ -26,6 +42,8 @@ export class AppComponent implements OnInit {
     }
     this.api.postApi('test').subscribe(Observer);
     this.api.postApi('123', { body: "testPHP" }).subscribe(Observer);
+    this.Mode = this.changeMode.bind(this);
+    this.Menu = this.changeMenu.bind(this);
   }
 }
 
@@ -34,12 +52,9 @@ export class AppComponent implements OnInit {
   templateUrl: './Appbtn.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppbtnComponent implements OnInit {
-  @Output() Toggle: EventEmitter<boolean> = new EventEmitter();
+export class AppbtnComponent {
+  @Input() Menu: Function;
   constructor(public api: ApiService) { }
-  ngOnInit() {
-
-  }
 }
 
 @Component({
@@ -47,22 +62,13 @@ export class AppbtnComponent implements OnInit {
   templateUrl: './lang.component.html',
   styleUrls: ['./app.component.css']
 })
-export class LangComponent implements OnInit {
-  @Output() Toggle: EventEmitter<boolean> = new EventEmitter();
-  mode: Mode = Mode.S;
+export class LangComponent {
+  @Input() Mode: Function;
+  @Input() Menu: Function;
+  @Input() mode;
   constructor(public api: ApiService) { }
-  changeMode() {
-    this.api.mode = !this.api.mode;
-    let mode = (this.api.mode) ? "N" : "S", body = document.querySelector("body");
-    this.mode = Mode[mode];
-    body.style.background = BG[mode];
-    this.Toggle.emit(false);
-  }
   language(lang: string) {
     this.api.changeLanguage(lang);
-    this.Toggle.emit(false);
-  }
-  ngOnInit() {
-
+    this.Menu(false);
   }
 }
