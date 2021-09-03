@@ -10,12 +10,9 @@ import 'rxjs/add/observable/throw';
 @Injectable()
 export class ApiService {
     private lang: string = 'zh-tw';
-    public langChart: any;
-    public mode: boolean = false;
+    langChart: any;
+    mode: boolean = false;
     constructor(private http: HttpClient) { }
-    public nowLang(): string {
-        return this.lang;
-    }
     set _lang(lang: string) {
         let _Lang = this.lang;
         this.lang = lang;
@@ -32,7 +29,7 @@ export class ApiService {
     get _lang() {
         return this.lang;
     }
-    public postApi(getWay: string | number, obj?: any): Observable<ResponseData> {
+    postApi(getWay: string | number, obj?: any): Observable<ResponseData> {
         let header = this.formateObj({ 'Content-Type': 'application/json; charset=UTF-8' }) as HttpHeaders, option = { headers: header }, // 協定
             data = (obj) ? this.http.post(`php/system.php?getWay=${getWay}`, this.formateObj(obj), option) : this.http.get(`assets/${getWay}.json`);
         return this.formateData(data);
