@@ -8,7 +8,7 @@ $getWay = $_GET['getWay'];
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $body = $_POST['body'];
-    $data = array($getWay, $body);
+    $data = array('getWay' => $getWay, 'body' => $body);
 
     echo json_encode($data);
 } else {
