@@ -4,6 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import { ResponseData } from '@ts/interface';
 import { ErrorTranslate } from '@ts/translate';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/retry';
+import 'rxjs/add/operator/timeout';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
@@ -21,6 +23,8 @@ export class ApiService {
         let _Lang = this.lang;
         this.lang = lang;
         this.http.get(`assets/${lang}.json`)
+            .retry(2)
+            .timeout(30000)
             .catch((err: HttpErrorResponse) => {
                 alert(ErrorTranslate[_Lang]["langError"]);
                 return this.ErrorData(err, "Language");
@@ -49,7 +53,9 @@ export class ApiService {
      * @param obj 取得的資料<Observable>
      */
     private formateData(obj: Observable<any>): Observable<ResponseData> {
-        return obj.map((el: HttpResponse<any>) => this.SuccesData(el))
+        return obj.retry(2)
+            .timeout(30000)
+            .map((el: HttpResponse<any>) => this.SuccesData(el))
             .catch((err: HttpErrorResponse) => this.ErrorData(err, "Server"));
     }
     /**
