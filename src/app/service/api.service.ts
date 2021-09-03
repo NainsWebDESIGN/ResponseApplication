@@ -44,8 +44,12 @@ export class ApiService {
      * @param obj post時的資料(選填)
      */
     postApi(getWay: string | number, obj?: any): Observable<ResponseData> {
-        let header = this.formateObj({ 'Content-Type': 'application/json; charset=UTF-8' }) as HttpHeaders, option = { headers: header }, // 協定
-            data = (obj) ? this.http.post(`php/system.php?getWay=${getWay}`, this.formateObj(obj), option) : this.http.get(`assets/${getWay}.json`);
+        let header = this.formateObj({ 'Content-Type': 'application/json; charset=UTF-8' }) as HttpHeaders,
+            option = { headers: header }, // 協定
+            data = (obj) ?
+                this.http.post(`php/system.php?getWay=${getWay}`, this.formateObj(obj), option) :
+                this.http.get(`assets/${getWay}.json`);
+
         return this.formateData(data);
     }
     /**
