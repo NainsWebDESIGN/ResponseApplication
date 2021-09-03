@@ -1,3 +1,4 @@
+/** 取得語言包錯誤時彈出的語系包 */
 export const ErrorTranslate = {
     'zh-tw': {
         langError: "轉換語言失敗，請給予正確的語系包名稱做轉換!"

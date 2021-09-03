@@ -9,10 +9,14 @@ import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class ApiService {
+    /** 語系 */
     private lang: string = 'zh-tw';
+    /** 語系包 */
     langChart: any;
+    /** 日夜模式 */
     mode: boolean = false;
     constructor(private http: HttpClient) { }
+    /** 設定語言及語系包 */
     set _lang(lang: string) {
         let _Lang = this.lang;
         this.lang = lang;
@@ -26,18 +30,32 @@ export class ApiService {
                 err => console.log(err)
             );
     }
+    /** 取得語言 */
     get _lang() {
         return this.lang;
     }
+    /**
+     * Ajax
+     * @param getWay Ajax的檔案或php的參數(必填)
+     * @param obj post時的資料(選填)
+     */
     postApi(getWay: string | number, obj?: any): Observable<ResponseData> {
         let header = this.formateObj({ 'Content-Type': 'application/json; charset=UTF-8' }) as HttpHeaders, option = { headers: header }, // 協定
             data = (obj) ? this.http.post(`php/system.php?getWay=${getWay}`, this.formateObj(obj), option) : this.http.get(`assets/${getWay}.json`);
         return this.formateData(data);
     }
+    /**
+     * 處理並返回Ajax取得的資料或錯誤
+     * @param obj 取得的資料<Observable>
+     */
     private formateData(obj: Observable<any>): Observable<ResponseData> {
         return obj.map((el: HttpResponse<any>) => this.SuccesData(el))
             .catch((err: HttpErrorResponse) => this.ErrorData(err, "Server"));
     }
+    /**
+     * 處理post協定或是物件表單
+     * @param obj Content-Type或是post物件
+     */
     private formateObj(obj: any): FormData | HttpHeaders {
         let key = Object.keys(obj), data;
         switch (key[0]) {
@@ -47,6 +65,10 @@ export class ApiService {
         key.forEach(item => data.append(item, obj[item]));
         return data;
     }
+    /**
+     * 請求成功時的物件處理
+     * @param obj 取得的資料
+     */
     private SuccesData(obj: HttpResponse<any>): ResponseData {
         return {
             status: true,
@@ -54,6 +76,10 @@ export class ApiService {
             ret: obj
         }
     }
+    /**
+     * 請求失敗時的物件處理
+     * @param obj 取得的資料
+     */
     private ErrorData(obj: HttpErrorResponse, component: string): Observable<ResponseData> {
         return Observable.throw({
             status: false,

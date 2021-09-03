@@ -13,12 +13,18 @@ export class AppComponent implements OnInit {
   setWidth($event) {
     this.InnerWidth = ($event.target.innerWidth <= 414)
   }
+  /** 現在的螢幕寬度 */
   InnerWidth: boolean = false;
+  /** 綁定處理菜單模式 */
   Menu: Function;
+  /** 隨螢幕大小產生菜單 */
   menu: boolean = false;
+  /** 綁定處理日夜模式 */
   Mode: Function;
+  /** 日夜模式的按鈕名稱 */
   mode: Mode = Mode.S;
   constructor(public api: ApiService) { }
+  /** 處理日夜模式 */
   changeMode() {
     this.api.mode = !this.api.mode;
     let mode = (this.api.mode) ? "N" : "S", body = document.querySelector("body");
@@ -26,6 +32,7 @@ export class AppComponent implements OnInit {
     body.style.background = BG[mode];
     this.changeMenu(false);
   }
+  /** 處理菜單模式 */
   changeMenu(boolin?: boolean) {
     this.menu = (boolin) ? boolin : !this.menu;
   }
@@ -48,6 +55,7 @@ export class AppComponent implements OnInit {
   styleUrls: ['./app.component.css']
 })
 export class AppbtnComponent {
+  /** 處理菜單模式 */
   @Input() Menu: Function;
   constructor(public api: ApiService) { }
 }
@@ -58,10 +66,17 @@ export class AppbtnComponent {
   styleUrls: ['./app.component.css']
 })
 export class LangComponent {
+  /** 處理日夜模式 */
   @Input() Mode: Function;
+  /** 處理菜單模式 */
   @Input() Menu: Function;
+  /** 日夜模式的按鈕名稱 */
   @Input() mode;
   constructor(public api: ApiService) { }
+  /**
+   * 更換語系
+   * @param lang 語系
+   */
   language(lang: string) {
     this.api._lang = lang;
     this.Menu(false);

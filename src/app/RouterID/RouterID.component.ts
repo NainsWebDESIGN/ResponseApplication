@@ -8,6 +8,7 @@ import { ApiService } from '@service';
   styleUrls: ['./routerID.component.scss']
 })
 export class RouterIDComponent implements OnInit {
+  /** router實作取得的id */
   title: string;
   constructor(private router: ActivatedRoute, public api: ApiService) { }
   ngOnInit() {
