@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpResponse, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { ResponseData } from '@ts/interface';
 import 'rxjs/add/operator/map';
@@ -17,7 +17,7 @@ export class ApiService {
             .subscribe(Lang => this.langChart = Lang);
     }
     postApi(getWay: string | number, obj?: any): Observable<ResponseData> {
-        let header = this.formateHeaders({ 'Content-Type': 'application/json; charset=UTF-8' }), option = { headers: header }, // 協定
+        let header = this.formateObj({ 'Content-Type': 'application/json; charset=UTF-8' }) as HttpHeaders, option = { headers: header }, // 協定
             data = (obj) ? this.http.post(`php/system.php?getWay=${getWay}`, this.formateObj(obj), option) : this.http.get(`assets/${getWay}.json`);
         return this.formateData(data);
     }
@@ -25,14 +25,13 @@ export class ApiService {
         return obj.map((el: HttpResponse<any>) => this.SuccesData(el))
             .catch((err: HttpErrorResponse) => this.ErrorData(err));
     }
-    private formateHeaders(obj: any): HttpHeaders {
-        let data = new HttpHeaders();
-        Object.keys(obj).forEach(item => data.append(item, obj[item]));
-        return data;
-    }
-    private formateObj(obj: any): FormData {
-        let data = new FormData();
-        Object.keys(obj).forEach(item => data.append(item, obj[item]));
+    private formateObj(obj: any): FormData | HttpHeaders {
+        let key = Object.keys(obj), data;
+        switch (key[0]) {
+            case 'Content-Type': data = new HttpHeaders(); break;
+            default: data = new FormData(); break;
+        }
+        key.forEach(item => data.append(item, obj[item]));
         return data;
     }
     private SuccesData(obj: HttpResponse<any>): ResponseData {
