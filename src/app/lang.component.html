@@ -3,6 +3,8 @@
         {{ "中文" | app: api.langChart }}</a>
     <a [class.night]="api.mode" class="langBtn" (click)="language('en-us')">
         {{ "英文" | app: api.langChart }}</a>
+    <a [class.night]="api.mode" class="langBtn" (click)="language('th')">
+        {{ "泰文" | app: api.langChart }}</a>
     <a [class.night]="api.mode" class="langBtn" (click)="Mode()">
         {{ mode | app: api.langChart }}</a>
 </div>

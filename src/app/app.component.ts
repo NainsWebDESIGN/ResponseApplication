@@ -27,11 +27,7 @@ export class AppComponent implements OnInit {
     this.changeMenu(false);
   }
   changeMenu(boolin?: boolean) {
-    if (boolin) {
-      this.menu = boolin;
-    } else {
-      this.menu = !this.menu;
-    }
+    this.menu = (boolin) ? boolin : !this.menu;
   }
   ngOnInit() {
     let wwd = window.innerWidth;
@@ -42,8 +38,7 @@ export class AppComponent implements OnInit {
     }
     this.api.postApi('test').subscribe(Observer);
     this.api.postApi('123', { body: "testPHP" }).subscribe(Observer);
-    this.Mode = this.changeMode.bind(this);
-    this.Menu = this.changeMenu.bind(this);
+    ["Mode", "Menu"].forEach(item => this[item] = this[`change${item}`].bind(this));
   }
 }
 
@@ -68,7 +63,7 @@ export class LangComponent {
   @Input() mode;
   constructor(public api: ApiService) { }
   language(lang: string) {
-    this.api.changeLanguage(lang);
+    this.api._lang = lang;
     this.Menu(false);
   }
 }
