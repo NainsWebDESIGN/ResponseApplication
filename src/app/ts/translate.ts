@@ -7,3 +7,14 @@ export const ErrorTranslate = {
         langError: "The language conversion failed, please give the correct language package name to do the conversion!"
     }
 }
+/** 所有語系 */
+export const Language = [
+    {
+        lang: '中文',
+        value: 'zh-tw'
+    },
+    {
+        lang: '英文',
+        value: 'en-us'
+    }
+]

@@ -1,6 +1,7 @@
-import { Component, OnInit, HostListener, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, HostListener, Input } from '@angular/core';
 import { ApiService } from '@service';
 import { Location_BG, Test_BG, Mode } from '@ts/mode';
+import { Language } from '@ts/translate';
 
 @Component({
   selector: 'app-root',
@@ -69,12 +70,13 @@ export class LangComponent {
   @Input() Menu: Function;
   /** 日夜模式的按鈕名稱 */
   @Input() mode;
+  language: any[] = Language;
   constructor(public api: ApiService) { }
   /**
    * 更換語系
    * @param lang 語系
    */
-  language(lang: string) {
+  changeLang(lang: string) {
     this.api._lang = lang;
     this.Menu(false);
   }
