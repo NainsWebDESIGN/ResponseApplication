@@ -10,7 +10,7 @@ export class AppComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   /** 依據螢幕大小更動取得寬度值 */
   setWidth($event) {
-    this.InnerWidth = ($event.target.innerWidth <= 414)
+    this.InnerWidth = ($event.target.innerWidth <= 726)
   }
   /** 現在的螢幕寬度 */
   InnerWidth: boolean = false;
@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
   }
   ngOnInit() {
     let wwd = window.innerWidth;
-    this.InnerWidth = (wwd <= 414);
+    this.InnerWidth = (wwd <= 726);
     this.api.postApi('test').subscribe(
       data => console.log(data),
       err => console.log(err),

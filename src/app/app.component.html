@@ -2,7 +2,8 @@
 
   <app_lang [Mode]="Mode" [Menu]="Menu" [mode]="mode" *ngIf="!InnerWidth"></app_lang>
 
-  <div class="menuToggle" [ngClass]="{'active': menu, 'night': api.mode}" *ngIf="InnerWidth">
+  <div class="menuToggle" [ngClass]="{'us': api._lang == 'en-us', 'active': menu, 'night': api.mode}"
+    *ngIf="InnerWidth">
     <div class="menulink">
       <app_btn [Menu]="Menu" *ngIf="InnerWidth"></app_btn>
     </div>

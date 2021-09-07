@@ -1,4 +1,4 @@
-<div class="lang">
+<div class="lang" [class.us]="api._lang == 'en-us'">
     <a [class.night]="api.mode" class="langBtn" (click)="language('zh-tw')">
         {{ "中文" | app: api.langChart }}</a>
     <a [class.night]="api.mode" class="langBtn" (click)="language('en-us')">

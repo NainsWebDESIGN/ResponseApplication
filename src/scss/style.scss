@@ -5,7 +5,7 @@
   }
 }
 @mixin ipad {
-  @media (max-width: 2170px) and (min-width: 1490px) {
+  @media (max-width: 726px) and (min-width: 416px) {
     @content;
   }
 }
@@ -44,6 +44,10 @@ section {
     height: 90%;
     top: 5%;
   }
+  @include ipad {
+    height: 90%;
+    top: 5%;
+  }
   .menuToggle {
     height: 90%;
     border-radius: 15px 0 0 15px;
@@ -53,6 +57,11 @@ section {
     opacity: 0;
     background-color: #000;
     z-index: 10;
+    @include ipad {
+      &.us {
+        width: 50%;
+      }
+    }
     &.active {
       left: 10%;
       opacity: 1;
@@ -92,6 +101,13 @@ section {
         left: 15px;
         z-index: 9999;
         width: 63%;
+        @include ipad {
+          width: 86%;
+          &.us {
+            left: 8%;
+            width: 108%;
+          }
+        }
         a {
           text-decoration: none;
           cursor: pointer;
@@ -180,6 +196,11 @@ section {
         color: #000;
       }
       @include mobile {
+        width: 94px;
+        left: 50%;
+        margin-left: -47px;
+      }
+      @include ipad {
         width: 94px;
         left: 50%;
         margin-left: -47px;
