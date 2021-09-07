@@ -12,7 +12,7 @@ export class RouterIDComponent implements OnInit {
   title: string;
   /** 取得資料的內容 */
   content: PHP_Content = { getWay: "", body: "" };
-  /** Loading */
+  /** Loading狀態 */
   load: boolean = false;
   constructor(private router: ActivatedRoute, public api: ApiService) { }
   ngOnInit() {
@@ -20,10 +20,7 @@ export class RouterIDComponent implements OnInit {
       this.title = el.data;
       this.load = true;
       this.api.postApi(this.title, { body: "testPHP" }).subscribe(
-        data => {
-          console.log(data);
-          this.content = data.ret;
-        },
+        data => this.content = data.ret,
         err => {
           console.log(err);
           this.content.getWay = err.err;
