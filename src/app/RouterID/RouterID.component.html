@@ -1,3 +1,13 @@
-<p [class.night]="api.mode" class="rouText">
+<p [class.night]="api.mode" class="rouText" *ngIf="load">
   {{title | app: api.langChart}} {{"執行中" | app: api.langChart}}
 </p>
+<ng-container *ngIf="!load">
+  <p [class.night]="api.mode" class="rouText">
+    {{"索引" | app: api.langChart}}&ensp;:&ensp;
+    {{content.getWay | app: api.langChart}}
+  </p>
+  <p [class.night]="api.mode" class="rouText">
+    {{"資料" | app: api.langChart}}&ensp;:&ensp;
+    {{content.body}}
+  </p>
+</ng-container>

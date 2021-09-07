@@ -1,11 +1,10 @@
 import { Component, OnInit, HostListener, Output, EventEmitter, Input } from '@angular/core';
 import { ApiService } from '@service';
-import { BG, Mode } from '@ts/mode';
+import { Location_BG, Test_BG, Mode } from '@ts/mode';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
@@ -27,9 +26,10 @@ export class AppComponent implements OnInit {
   /** 處理日夜模式 */
   changeMode() {
     this.api.mode = !this.api.mode;
-    let mode = (this.api.mode) ? "N" : "S", body = document.querySelector("body");
+    let mode = (this.api.mode) ? "N" : "S", body = document.querySelector("body"),
+      Localhost: boolean = location.href.substr(0, 21) !== "http://localhost:1491";
     this.mode = Mode[mode];
-    body.style.background = BG[mode];
+    body.style.background = (Localhost) ? Location_BG[mode] : Test_BG[mode];
     this.changeMenu(false);
   }
   /** 處理菜單模式 */
@@ -39,20 +39,18 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     let wwd = window.innerWidth;
     this.InnerWidth = (wwd <= 414);
-    let Observer = {
-      next: el => console.log(el),
-      error: err => console.log(err)
-    }
-    this.api.postApi('test').subscribe(Observer);
-    this.api.postApi('123', { body: "testPHP" }).subscribe(Observer);
+    this.api.postApi('test').subscribe(
+      data => console.log(data),
+      err => console.log(err),
+      () => console.log("ServerJson Complete")
+    );
     ["Mode", "Menu"].forEach(item => this[item] = this[`change${item}`].bind(this));
   }
 }
 
 @Component({
   selector: 'app_btn',
-  templateUrl: './Appbtn.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './Appbtn.component.html'
 })
 export class AppbtnComponent {
   /** 處理菜單模式 */
@@ -62,8 +60,7 @@ export class AppbtnComponent {
 
 @Component({
   selector: 'app_lang',
-  templateUrl: './lang.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './lang.component.html'
 })
 export class LangComponent {
   /** 處理日夜模式 */

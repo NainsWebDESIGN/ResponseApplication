@@ -4,3 +4,7 @@ export interface ResponseData {
     err: string,
     ret: any
 }
+export interface PHP_Content {
+    getWay: string | number,
+    body: string
+}
