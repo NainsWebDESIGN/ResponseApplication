@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '@service';
 import { PHP_Content } from '@ts/interface';
+import { dateArr, dateProperty } from '@ts/translate';
 
 @Component({
   selector: 'app-routerID',
@@ -14,6 +15,9 @@ export class RouterIDComponent implements OnInit {
   content: PHP_Content = { getWay: "", body: "" };
   /** Loading狀態 */
   load: boolean = false;
+  Today = new Date();
+  date: string[] = dateArr;
+  Property = dateProperty;
   constructor(private router: ActivatedRoute, public api: ApiService) { }
   ngOnInit() {
     this.router.params.subscribe((el: any) => {

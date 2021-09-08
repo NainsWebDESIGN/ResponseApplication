@@ -14,7 +14,7 @@ export class ApiService {
     /** 語系 */
     private lang: string = 'zh-tw';
     /** 語系包 */
-    langChart: any;
+    langChart: any = {};
     /** 日夜模式 */
     mode: boolean = false;
     constructor(private http: HttpClient) { }
@@ -30,12 +30,12 @@ export class ApiService {
                 return this.ErrorData(err, "Language");
             })
             .subscribe(
-                Lang => this.langChart = Lang,
-                err => console.log(err)
+                (langData: HttpResponse<any>) => this.langChart = langData,
+                (err: HttpErrorResponse) => console.log(err)
             );
     }
     /** 取得語言 */
-    get _lang() {
+    get _lang(): string {
         return this.lang;
     }
     /**
@@ -56,8 +56,9 @@ export class ApiService {
      * 處理並返回Ajax取得的資料或錯誤
      * @param obj 取得的資料<Observable>
      */
-    private formateData(obj: Observable<any>): Observable<ResponseData> {
-        return obj.retry(2)
+    private formateData(ResponseObservable: Observable<any>): Observable<ResponseData> {
+        return ResponseObservable
+            .retry(2)
             .timeout(30000)
             .map((el: HttpResponse<any>) => this.SuccesData(el))
             .catch((err: HttpErrorResponse) => this.ErrorData(err, "Server"));

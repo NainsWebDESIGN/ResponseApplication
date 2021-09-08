@@ -28,4 +28,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 "# ResponseApplication"
 
 https://myself-bbs.com/thread-43863-1-1.html
-6 OK
+
+datepipe 出錯

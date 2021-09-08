@@ -34,6 +34,20 @@ section {
   border-radius: 15px;
   background: #555;
   opacity: 0.8;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  &::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #b9becf;
+    border-radius: 10px;
+  }
   &.night {
     color: #000;
     background: #ccc;
@@ -47,6 +61,13 @@ section {
   @include ipad {
     height: 90%;
     top: 5%;
+  }
+  ul {
+    li {
+      margin: 8px 0px 0px 15px;
+      letter-spacing: 1px;
+      list-style-type: none;
+    }
   }
   .menuToggle {
     height: 90%;
