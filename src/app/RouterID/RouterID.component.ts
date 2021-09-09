@@ -19,6 +19,10 @@ export class RouterIDComponent implements OnInit {
   date: string[] = dateArr;
   Property = dateProperty;
   constructor(private router: ActivatedRoute, public api: ApiService) { }
+  scrollTop() {
+    let top = document.getElementById("content");
+    top.scrollTo({ top: 0, behavior: 'smooth' });
+  }
   ngOnInit() {
     this.router.params.subscribe((el: any) => {
       this.title = el.data;

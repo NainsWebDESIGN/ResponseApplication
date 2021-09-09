@@ -14,3 +14,17 @@ export class AppPipe implements PipeTransform {
   }
 
 }
+
+@Pipe({
+  name: 'keyvalue'
+})
+export class KeyvaluePipe implements PipeTransform {
+  /**
+   * 將物件轉換成陣列給ngFor使用
+   * @param obj 物件
+   */
+  transform(obj) {
+    return Object.keys(obj).map(el => { return { key: el, value: obj[el] } });
+  }
+
+}

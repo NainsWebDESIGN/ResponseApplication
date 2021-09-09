@@ -7,6 +7,7 @@ export const ErrorTranslate = {
         langError: "The language conversion failed, please give the correct language package name to do the conversion!"
     }
 }
+export const Localhost: boolean = (location.href.substr(0, 21) !== "http://localhost:1491");
 /** 所有語系 */
 export const Language = [
     {
@@ -66,6 +67,10 @@ export const dateProperty = [
         value: ["d", "dd"]
     },
     {
+        type: "工作日",
+        value: ["E", "EE", "EEE", "EEEE", "EEEEE", "EEEEEE"]
+    },
+    {
         type: "工作日獨立",
         value: ["c", "cc", "ccc", "cccc", "ccccc", "cccccc"]
     },
@@ -73,14 +78,14 @@ export const dateProperty = [
         type: "時期",
         value: ["a", "aa", "aaa", "aaaa", "aaaaa"]
     },
-    {
-        type: "時期*",
-        value: ["B", "BB", "BBB", "BBBB", "BBBBB"]
-    },
-    {
-        type: "期間獨立*",
-        value: ["b", "bb", "bbb", "bbbb", "bbbbb"]
-    },
+    // {
+    //     type: "時期*",
+    //     value: ["B", "BB", "BBB", "BBBB", "BBBBB"]
+    // },
+    // {
+    //     type: "期間獨立*",
+    //     value: ["b", "bb", "bbb", "bbbb", "bbbbb"]
+    // },
     {
         type: "1-12 小時",
         value: ["h", "hh"]
@@ -104,5 +109,5 @@ export const dateProperty = [
     {
         type: "區",
         value: ["z", "zz", "zzz", "zzzz", "Z", "ZZ", "ZZZ", "ZZZZ", "ZZZZZ", "O", "OO", "OOO", "OOOO"]
-    },
+    }
 ]

@@ -12,7 +12,7 @@ import { RouterIDComponent } from './routerID/routerID.component';
 import { ApiService } from '@service';
 
 // Pipe
-import { AppPipe } from '@pipe';
+import { AppPipe, KeyvaluePipe } from '@pipe';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,8 @@ import { AppPipe } from '@pipe';
     AppPipe,
     RouterIDComponent,
     AppbtnComponent,
-    LangComponent
+    LangComponent,
+    KeyvaluePipe
   ],
   imports: [
     BrowserModule,

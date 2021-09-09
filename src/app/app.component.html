@@ -1,4 +1,4 @@
-<section [class.night]="api.mode">
+<section [class.night]="api.mode" id="content" (scroll)="api.TopStatus = ($event.srcElement.scrollTop > 0)">
 
   <app_lang [Mode]="Mode" [Menu]="Menu" [mode]="mode" *ngIf="!InnerWidth"></app_lang>
 

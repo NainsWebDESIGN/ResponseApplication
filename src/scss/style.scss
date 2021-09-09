@@ -62,11 +62,48 @@ section {
     height: 90%;
     top: 5%;
   }
+  .top {
+    color: #ddd;
+    font-size: x-large;
+    border-radius: 5px;
+    position: fixed;
+    right: 11%;
+    bottom: 11%;
+    width: 40px;
+    text-align: center;
+    height: 25px;
+    line-height: 25px;
+    cursor: none;
+    opacity: 0;
+    &.open {
+      opacity: 1;
+      cursor: pointer;
+    }
+    &.night {
+      color: #555;
+    }
+    @include mobile {
+      bottom: 6%;
+    }
+    @include ipad {
+      bottom: 6%;
+    }
+  }
   ul {
     li {
       margin: 8px 0px 0px 15px;
       letter-spacing: 1px;
       list-style-type: none;
+      color: #fff;
+      &.night {
+        color: #000;
+      }
+      p {
+        color: #fff;
+        &.night {
+          color: #000;
+        }
+      }
     }
   }
   .menuToggle {

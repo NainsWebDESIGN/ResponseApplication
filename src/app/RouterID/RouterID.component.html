@@ -12,15 +12,18 @@
   </p>
 </ng-container>
 <ul>
-  <li>DatePipe</li>
-  <li>Example</li>
-  <li style="margin-left: 30px;" *ngFor="let date of date">
+  <li [class.night]="api.mode">{{"日期管道" | app: api.langChart}}</li>
+  <li [class.night]="api.mode">{{"範例" | app: api.langChart}}:</li>
+  <li [class.night]="api.mode" style="margin-left: 30px;" *ngFor="let date of date">
     {{date}}&ensp;:&ensp;{{Today | date: date}}
   </li>
-  <li>Property</li>
-  <li *ngFor="let pro of Property">{{pro.type}}
-    <!-- <p style="margin-left: 15px;" *ngFor="let value of pro.value">
+  <li [class.night]="api.mode">{{"參數" | app: api.langChart}}:</li>
+  <li [class.night]="api.mode" *ngFor="let pro of Property">
+    {{pro.type | app: api.langChart}}
+    <p [class.night]="api.mode" style="margin-left: 15px;" *ngFor="let value of pro.value">
       {{value}}&ensp;:&ensp;{{Today | date: value}}
-    </p> -->
+    </p>
   </li>
 </ul>
+<i class="fas fa-arrow-alt-circle-up top" (click)='scrollTop()'
+  [ngClass]="{'open': api.TopStatus, 'night': api.mode}"></i>
