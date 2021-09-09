@@ -15,10 +15,14 @@ export class RouterIDComponent implements OnInit {
   content: PHP_Content = { getWay: "", body: "" };
   /** Loading狀態 */
   load: boolean = false;
+  /** 今日日期 */
   Today = new Date();
+  /** DatePipe範例 */
   date: string[] = dateArr;
+  /** DatePipe參數 */
   Property = dateProperty;
   constructor(private router: ActivatedRoute, public api: ApiService) { }
+  /** 至頂端 */
   scrollTop() {
     let top = document.getElementById("content");
     top.scrollTo({ top: 0, behavior: 'smooth' });

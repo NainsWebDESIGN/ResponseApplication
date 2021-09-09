@@ -7,6 +7,7 @@ export const ErrorTranslate = {
         langError: "The language conversion failed, please give the correct language package name to do the conversion!"
     }
 }
+/** 正機或測機的布林值 */
 export const Localhost: boolean = (location.href.substr(0, 21) !== "http://localhost:1491");
 /** 所有語系 */
 export const Language = [
@@ -19,6 +20,7 @@ export const Language = [
         value: 'en-us'
     }
 ]
+/** DatePipe範例 */
 export const dateArr = [
     "M/d/yy, h:mm a",
     "MMM d, y, h:mm:ss a",
@@ -33,6 +35,7 @@ export const dateArr = [
     "h:mm:ss a z",
     "h:mm:ss a zzzz"
 ]
+/** DatePipe參數 */
 export const dateProperty = [
     {
         type: "時代",
@@ -78,14 +81,6 @@ export const dateProperty = [
         type: "時期",
         value: ["a", "aa", "aaa", "aaaa", "aaaaa"]
     },
-    // {
-    //     type: "時期*",
-    //     value: ["B", "BB", "BBB", "BBBB", "BBBBB"]
-    // },
-    // {
-    //     type: "期間獨立*",
-    //     value: ["b", "bb", "bbb", "bbbb", "bbbbb"]
-    // },
     {
         type: "1-12 小時",
         value: ["h", "hh"]

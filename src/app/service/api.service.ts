@@ -17,6 +17,7 @@ export class ApiService {
     langChart: any = {};
     /** 日夜模式 */
     mode: boolean = false;
+    /** 是否置頂的狀態 */
     TopStatus: boolean = false;
     constructor(private http: HttpClient) { }
     /** 設定語言及語系包 */

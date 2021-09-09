@@ -4,6 +4,7 @@ export interface ResponseData {
     err: string,
     ret: any
 }
+/** PHP的格式 */
 export interface PHP_Content {
     getWay: string | number,
     body: string
