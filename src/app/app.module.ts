@@ -9,7 +9,7 @@ import { AppComponent, AppbtnComponent, LangComponent } from './app.component';
 import { RouterIDComponent } from './routerID/routerID.component';
 
 // Service
-import { ApiService } from '@service';
+import { ApiService, App } from '@service';
 
 // Pipe
 import { AppPipe, KeyvaluePipe } from '@pipe';
@@ -29,7 +29,7 @@ import { AppPipe, KeyvaluePipe } from '@pipe';
     HttpClientModule,
     AppRoute
   ],
-  providers: [ApiService],
+  providers: [ApiService, App],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
