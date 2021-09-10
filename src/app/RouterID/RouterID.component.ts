@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ApiService } from '@service';
+import { ApiService, App } from '@service';
 import { PHP_Content } from '@ts/interface';
 import { dateArr, dateProperty } from '@ts/translate';
 
@@ -28,6 +28,8 @@ export class RouterIDComponent implements OnInit {
     top.scrollTo({ top: 0, behavior: 'smooth' });
   }
   ngOnInit() {
+    App.text = "每月獨立";
+    console.log(App.find({ obj: dateProperty, key: "type" }));
     this.router.params.subscribe((el: any) => {
       this.title = el.data;
       this.load = true;

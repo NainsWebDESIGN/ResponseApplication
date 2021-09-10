@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class App {
-    static find(arr: any[], key: string, value: string | number) {
-        return arr.findIndex(el => el[key] == value);
+    static text: string | number;
+    static find(obj) {
+        let arr = obj["obj"], key = obj["key"];
+        return arr.findIndex(el => el[key] == this.text);
     }
 }
